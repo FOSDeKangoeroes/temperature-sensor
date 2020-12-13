@@ -29,7 +29,7 @@ import time
 
 toDisplay="0000" # numbers and digits to display
 
-delay = 0.005 # delay between digits refresh
+delay = 0.0005 # delay between digits refresh
 
 # --------------------------------------------------------------------
 # PINS MAPPING AND SETUP

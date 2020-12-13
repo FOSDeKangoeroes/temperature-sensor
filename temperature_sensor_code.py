@@ -13,9 +13,9 @@ base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 
-pinRed = 17
-pinGreen = 27
-pinBlue = 22
+pinRed = 26
+pinGreen = 19
+pinBlue = 13
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -63,9 +63,9 @@ thread.start()
 try:	
   while True:
     temp = read_temp()
-    # blink_led(temp)
+    blink_led(temp)
     lcd.toDisplay = "{0:.2f}".format(temp)
-    time.sleep(3)
+    time.sleep(5)
 except KeyboardInterrupt:
     GPIO.cleanup()
     sys.exit()
