@@ -15,15 +15,11 @@ while i < device_count:
 
 
 while True:
-    temp = temp_manager.read_temp()
-    print(temp)
+    allTemps = list()
+    for device in devices:
+        temp = temp_manager.read_temp(device)
+        allTemps.append((device, temp))
+     
+    print(allTemps)
     time.sleep(1)
 
-def device_names:
-    names = list()
-
-    for i in range(device_count):
-        names.append(devices[i])
-        temp = names[i][20:35]
-        names[i] = temp
-    return names

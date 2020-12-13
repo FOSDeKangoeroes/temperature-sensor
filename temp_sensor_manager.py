@@ -11,11 +11,11 @@ class TempSensorManager:
         file.close()
         return lines
     
-    def read_temp(self):
-        lines = self.__read_raw_temp(TempSensorManager.device_file)
+    def read_temp(self, device):
+        lines = self.__read_raw_temp(device)
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
-            lines = self.__read_raw_temp(TempSensorManager.device_file)
+            lines = self.__read_raw_temp(device)
         equals_pos = lines[1].find('t=')
 
         if equals_pos != -1:
