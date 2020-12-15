@@ -12,8 +12,9 @@ If you want to use VS Code for development, you can use the SSH extension pack t
 
 ## Setting up the temp sensors
 
-- Enable 1-wire interface on the host PI
-- For each of the connected sensors, run: 
-  `sudo dtoverlay w1-gpio gpiopin=<pin where sensor is connected> pullup=0`
+Enable 1-wire interface on the host PI
+Add this to /boot/config.txt for each sensor:
+
+`dtoverlay=w1-gpio,gpiopin=<pin_where_sensor_is_connected>`
 
  
