@@ -23,13 +23,14 @@
 # Version: 1.0
 
 # Import required libraries
-import sys
 import RPi.GPIO as GPIO
 import time
 
-toDisplay="0000" # numbers and digits to display
+class LCD:
 
-delay = 0.0005 # delay between digits refresh
+    toDisplay = "0000"  # numbers and digits to display
+
+    delay = 0.0005  # delay between digits refresh
 
 # --------------------------------------------------------------------
 # PINS MAPPING AND SETUP
@@ -38,41 +39,27 @@ delay = 0.0005 # delay between digits refresh
 # digitDP activates Dot led
 # --------------------------------------------------------------------
 
-selDigit = [14,15,18,23]
-# Digits:   1, 2, 3, 4
+    selDigit = [14, 15, 18, 23]
+    # Digits:   1, 2, 3, 4
 
-display_list = [24,25,8,7,1,12,16] # define GPIO ports to use
-#disp.List ref: A ,B ,C,D,E,F ,G
+    display_list = [24, 25, 8, 7, 1, 12, 16]  # define GPIO ports to use
+    # disp.List ref: A ,B ,C,D,E,F ,G
 
-digitDP = 20
-#DOT = GPIO 20
+    digitDP = 20
+    # DOT = GPIO 20
 
-# Use BCM GPIO references instead of physical pin numbers
-GPIO.setmode(GPIO.BCM)
-
-# Set all pins as output
-GPIO.setwarnings(False)
-for pin in display_list:
-  GPIO.setup(pin,GPIO.OUT) # setting pins for segments
-for pin in selDigit:
-  GPIO.setup(pin,GPIO.OUT) # setting pins for digit selector
-GPIO.setup(digitDP,GPIO.OUT) # setting dot pin
-GPIO.setwarnings(True)
-
-# DIGIT map as array of array ,
-#so that arrSeg[0] shows 0, arrSeg[1] shows 1, etc
-arrSeg = [[0,0,0,0,0,0,1],\
-          [1,0,0,1,1,1,1],\
-          [0,0,1,0,0,1,0],\
-          [0,0,0,0,1,1,0],\
-          [1,0,0,1,1,0,0],\
-          [0,1,0,0,1,0,0],\
-          [0,1,0,0,0,0,0],\
-          [0,0,0,1,1,1,1],\
-          [0,0,0,0,0,0,0],\
-          [0,0,0,0,1,0,0]]
-
-GPIO.output(digitDP,0) # DOT pin
+    # DIGIT map as array of array ,
+    # so that arrSeg[0] shows 0, arrSeg[1] shows 1, etc
+    arrSeg = [[0, 0, 0, 0, 0, 0, 1],
+              [1, 0, 0, 1, 1, 1, 1],
+              [0, 0, 1, 0, 0, 1, 0],
+              [0, 0, 0, 0, 1, 1, 0],
+              [1, 0, 0, 1, 1, 0, 0],
+              [0, 1, 0, 0, 1, 0, 0],
+              [0, 1, 0, 0, 0, 0, 0],
+              [0, 0, 0, 1, 1, 1, 1],
+              [0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 1, 0, 0]]
 
 # --------------------------------------------------------------------
 # MAIN FUNCTIONS
@@ -82,29 +69,52 @@ GPIO.output(digitDP,0) # DOT pin
 #   element to space means digit deactivation
 # --------------------------------------------------------------------
 
-def showDisplay(digit):
- for i in range(0, 4): #loop on 4 digits selectors (from 0 to 3 included)
-  sel = [0,0,0,0]
-  sel[i] = 1
-  GPIO.output(selDigit, sel) # activates selected digit
+    def __init__(self) -> None:
+        GPIO.setmode(GPIO.BCM)
 
-  if digit[i].replace(".", "") == " ": # space disables digit
-   GPIO.output(display_list,0)
-   continue
-  numDisplay = int(digit[i].replace(".", ""))
-  GPIO.output(display_list, arrSeg[numDisplay]) # segments are activated according to digit mapping
-  if digit[i].count(".") == 0:
-   GPIO.output(digitDP,1)
-  else:
-   GPIO.output(digitDP,0)
-  time.sleep(delay)
+        # Set all pins as output
+        GPIO.setwarnings(False)
+        for pin in self.display_list:
+            GPIO.setup(pin, GPIO.OUT)  # setting pins for segments
+        for pin in self.selDigit:
+            GPIO.setup(pin, GPIO.OUT)  # setting pins for digit selector
 
-def splitToDisplay (toDisplay): # splits string to digits to display
- arrToDisplay=list(toDisplay)
- for i in range(len(arrToDisplay)):
-  if arrToDisplay[i] == ".": arrToDisplay[(i-1)] = arrToDisplay[(i-1)] + arrToDisplay[i] # dots are concatenated to previous array element
- while "." in arrToDisplay: arrToDisplay.remove(".") # array items containing dot char alone are removed
- return arrToDisplay
+        GPIO.setup(self.digitDP, GPIO.OUT)  # setting dot pin
+        GPIO.setwarnings(True)
+        GPIO.output(self.digitDP, 0)  # DOT pin
+
+    def display(self,digit):
+        for i in range(0, 4):  # loop on 4 digits selectors (from 0 to 3 included)
+            sel = [0, 0, 0, 0]
+            sel[i] = 1
+            GPIO.output(self.selDigit, sel)  # activates selected digit
+
+            if digit[i].replace(".", "") == " ":  # space disables digit
+                GPIO.output(self.display_list, 0)
+                continue
+            numDisplay = int(digit[i].replace(".", ""))
+            # segments are activated according to digit mapping
+            GPIO.output(self.display_list, self.arrSeg[numDisplay])
+            if digit[i].count(".") == 0:
+                GPIO.output(self.digitDP, 1)
+            else:
+                GPIO.output(self.digitDP, 0)
+            time.sleep(self.delay)
+
+
+    def split_for_display(self, toDisplay):  # splits string to digits to display
+        arrToDisplay = list(toDisplay)
+        for i in range(len(arrToDisplay)):
+            if arrToDisplay[i] == ".":
+                # dots are concatenated to previous array element
+                arrToDisplay[(i-1)] = arrToDisplay[(i-1)] + arrToDisplay[i]
+        while "." in arrToDisplay:
+            # array items containing dot char alone are removed
+            arrToDisplay.remove(".")
+        return arrToDisplay
+
+    def set_display_value(self, value):
+        self.toDisplay = value
 
 # --------------------------------------------------------------------
 # MAIN LOOP
@@ -113,8 +123,7 @@ def splitToDisplay (toDisplay): # splits string to digits to display
 #   showDisplay function in an infinite loop to let it appear as
 #   stable numbers display
 # --------------------------------------------------------------------
-
-def run():
-   while True:
-     time.sleep(delay)
-     showDisplay(splitToDisplay(toDisplay))
+    def run(self):
+        while True:
+            time.sleep(self.delay)
+            self.display(self.split_for_display(self.toDisplay))
