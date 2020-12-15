@@ -10,6 +10,7 @@ while True:
     for device in temp_manager.get_devices():
         temp = temp_manager.read_temp(device)
         allTemps.append((device, temp))
-
+    meanTemp = temp_manager.get_average_from_sensors()
     print(allTemps)
+    print(meanTemp)
     time.sleep(1)
