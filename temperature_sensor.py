@@ -1,9 +1,9 @@
 import sys
 import time
-from RPi import GPIO
-from temp_sensor_manager import TempSensorManager
 from threading import Thread
 from datetime import datetime
+from RPi import GPIO
+from temp_sensor_manager import TempSensorManager
 from lcd import LCD
 from led import LED
 from csv_logger import CsvLogger
@@ -13,12 +13,12 @@ def format_reading(device_name, reading_value):
     return [current_date, device_name, reading_value]
 
 try:
-    log_file = '/home/pi/log.csv'
+    LOG_FILE = '/home/pi/log.csv'
 
     temp_manager = TempSensorManager()
     lcd = LCD()
     led = LED()
-    csv_logger = CsvLogger(log_file)
+    csv_logger = CsvLogger(LOG_FILE)
 
     sensors = temp_manager.get_temp_sensor_files()
 
