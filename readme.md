@@ -4,7 +4,7 @@
 
 You need a Raspberry PI to run this code.
 
-Use venv to setup a virtual environment for easy development
+Use pipenv to setup a virtual environment. To install dependencies, run pipenv install.
 
 ## VS Code
 

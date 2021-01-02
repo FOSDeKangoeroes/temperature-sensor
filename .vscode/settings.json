@@ -1,3 +1,3 @@
 {
-    "python.pythonPath": "/home/pi/projects/temperature_sensor/env/bin/python3.7"
+    "python.pythonPath": "/home/pi/.local/share/virtualenvs/temperature_sensor-t22t0jL4/bin/python"
 }
