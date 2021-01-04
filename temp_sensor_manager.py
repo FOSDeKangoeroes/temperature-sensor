@@ -30,7 +30,7 @@ class TempSensorManager:
     def get_devices(self):
         sensors = self.get_temp_sensor_files()
         device_count = len(sensors)
-        devices = list()
+        devices = []
 
         for i in range(device_count):
             devices.append(sensors[i] + '/w1_slave')
