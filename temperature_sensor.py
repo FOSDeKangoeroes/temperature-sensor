@@ -14,29 +14,32 @@ def format_reading(device_name, reading_value):
     current_date = datetime.now().isoformat()
     return [current_date, device_name, reading_value]
 
+def read_all(devices):
+    all_temps = list()
+    for device in devices:
+        temp = temp_manager.read_temp(device)
+        all_temps.append((device, temp))
+        csv_logger.write_reading(format_reading(device, temp))
+    return all_temps
+
+
 try:
     LOG_FILE = '/home/pi/log.csv'
 
     temp_manager = TempSensorManager()
-    ledStrip = LedStrip(10, board.D18)
+    led_strip = LedStrip(10, board.D18)
     csv_logger = CsvLogger(LOG_FILE)
 
-    sensors = temp_manager.get_temp_sensor_files()
-
-    led_strip_thread = Thread(target=ledStrip.run)
+    led_strip_thread = Thread(target=led_strip.run)
     led_strip_thread.start()
 
     devices = temp_manager.get_devices()
 
     while True:
-        all_temps = list()
-        for device in devices:
-            temp = temp_manager.read_temp(device)
-            all_temps.append((device, temp))
-            csv_logger.write_reading(format_reading(device, temp))
-        mean_temp = statistics.mean(all_temps)
+        all_temps = read_all(devices)
+        mean_temp = statistics.mean(x[1] for x in all_temps)
+        led_strip.current_color = get_temperature_color(mean_temp)
         print(all_temps)
-        ledStrip.current_color = get_temperature_color(mean_temp)
         time.sleep(180)
 except KeyboardInterrupt:
     led_strip_thread.running = False

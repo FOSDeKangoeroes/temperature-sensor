@@ -1,6 +1,5 @@
 import glob
 import time
-import statistics
 
 class TempSensorManager:
     base_dir = '/sys/bus/w1/devices/'
