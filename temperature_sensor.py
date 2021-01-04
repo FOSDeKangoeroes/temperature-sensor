@@ -6,7 +6,6 @@ import board
 from RPi import GPIO
 from temp_sensor_manager import TempSensorManager
 from lcd import LCD
-from led import LED
 from csv_logger import CsvLogger
 from utils import get_temperature_color
 from led_strip import LedStrip
@@ -21,7 +20,6 @@ try:
     temp_manager = TempSensorManager()
     lcd = LCD()
     ledStrip = LedStrip(10, board.D18)
-    led = LED()
     csv_logger = CsvLogger(LOG_FILE)
 
     sensors = temp_manager.get_temp_sensor_files()
@@ -40,8 +38,7 @@ try:
         meanTemp = temp_manager.get_average_from_sensors()
         print(allTemps)
         ledStrip.current_color = get_temperature_color(meanTemp)
-        led.update_led(meanTemp)
-        time.sleep(1)
+        time.sleep(180)
 except KeyboardInterrupt:
     lcd_thread.running = False
     lcd_thread.join()
