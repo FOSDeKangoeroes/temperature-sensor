@@ -36,10 +36,10 @@ try:
     devices = temp_manager.get_devices()
 
     while True:
-        all_temps = read_all(devices)
-        mean_temp = statistics.mean(x[1] for x in all_temps)
+        readings = read_all(devices)
+        mean_temp = statistics.mean(x[1] for x in readings)
         led_strip.current_color = get_temperature_color(mean_temp)
-        print(all_temps)
+        print(readings)
         time.sleep(180)
 except KeyboardInterrupt:
     led_strip_thread.running = False
