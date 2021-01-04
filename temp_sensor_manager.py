@@ -39,11 +39,4 @@ class TempSensorManager:
             i = i + 1
 
         return devices
-
-    def get_average_from_sensors(self):
-        allTemps = list()
-        for device in self.get_devices():
-            temp = self.read_temp(device)
-            allTemps.append(temp)
-        return statistics.mean(allTemps)
         

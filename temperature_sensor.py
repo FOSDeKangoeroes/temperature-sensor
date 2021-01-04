@@ -1,3 +1,4 @@
+import statistics
 from threading import Thread
 from datetime import datetime
 import time
@@ -28,14 +29,14 @@ try:
     devices = temp_manager.get_devices()
 
     while True:
-        allTemps = list()
+        all_temps = list()
         for device in devices:
             temp = temp_manager.read_temp(device)
-            allTemps.append((device, temp))
+            all_temps.append((device, temp))
             csv_logger.write_reading(format_reading(device, temp))
-        meanTemp = temp_manager.get_average_from_sensors()
-        print(allTemps)
-        ledStrip.current_color = get_temperature_color(meanTemp)
+        mean_temp = statistics.mean(all_temps)
+        print(all_temps)
+        ledStrip.current_color = get_temperature_color(mean_temp)
         time.sleep(180)
 except KeyboardInterrupt:
     led_strip_thread.running = False
