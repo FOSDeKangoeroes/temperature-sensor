@@ -15,7 +15,7 @@ def format_reading(device_name, reading_value):
     return [current_date, device_name, reading_value]
 
 def read_all(devices):
-    all_temps = list()
+    all_temps = []
     for device in devices:
         temp = temp_manager.read_temp(device)
         all_temps.append((device, temp))
