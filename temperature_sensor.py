@@ -1,15 +1,16 @@
-from utils import get_temperature_color
-from led_strip import LedStrip
+from threading import Thread
+from datetime import datetime
 import sys
 import time
 import board
-from threading import Thread
-from datetime import datetime
+
 from RPi import GPIO
 from temp_sensor_manager import TempSensorManager
 from lcd import LCD
 from led import LED
 from csv_logger import CsvLogger
+from utils import get_temperature_color
+from led_strip import LedStrip
 
 def format_reading(device_name, reading_value):
     current_date = datetime.now().isoformat()
