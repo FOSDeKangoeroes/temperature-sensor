@@ -5,7 +5,6 @@ import board
 
 from RPi import GPIO
 from temp_sensor_manager import TempSensorManager
-from lcd import LCD
 from csv_logger import CsvLogger
 from utils import get_temperature_color
 from led_strip import LedStrip
