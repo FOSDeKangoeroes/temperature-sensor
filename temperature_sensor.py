@@ -18,14 +18,13 @@ try:
     LOG_FILE = '/home/pi/log.csv'
 
     temp_manager = TempSensorManager()
-    lcd = LCD()
     ledStrip = LedStrip(10, board.D18)
     csv_logger = CsvLogger(LOG_FILE)
 
     sensors = temp_manager.get_temp_sensor_files()
 
-    lcd_thread = Thread(target=ledStrip.run)
-    lcd_thread.start()
+    led_strip_thread = Thread(target=ledStrip.run)
+    led_strip_thread.start()
 
     devices = temp_manager.get_devices()
 
@@ -40,6 +39,6 @@ try:
         ledStrip.current_color = get_temperature_color(meanTemp)
         time.sleep(180)
 except KeyboardInterrupt:
-    lcd_thread.running = False
-    lcd_thread.join()
+    led_strip_thread.running = False
+    led_strip_thread.join()
     GPIO.cleanup()
