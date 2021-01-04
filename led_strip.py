@@ -41,13 +41,14 @@ class LedStrip:
             time.sleep(0.01)
     
     def turn_off(self):
-        self.pixels.fill((255,255,255))
+        self.pixels.fill((0,0,0))
         self.pixels.show()
+        time.sleep(1)
     
     def run(self):
         t = threading.currentThread()
         while getattr(t, "running", True):
             self.breathe(self.current_color)
-        
+        print('turning off')
         self.turn_off()
         

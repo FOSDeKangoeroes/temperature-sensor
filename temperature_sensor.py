@@ -44,7 +44,6 @@ try:
         led.update_led(meanTemp)
         time.sleep(1)
 except KeyboardInterrupt:
-    GPIO.cleanup()
     lcd_thread.running = False
     lcd_thread.join()
-    sys.exit()
+    GPIO.cleanup()
