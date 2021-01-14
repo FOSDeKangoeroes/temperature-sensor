@@ -1,5 +1,4 @@
 import threading
-import board
 import neopixel
 import time
 from utils import calculate_color_for_breathe
