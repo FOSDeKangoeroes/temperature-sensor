@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a92cb70b7e1701ba0afc85ad6ef51a13aa670f53de9ecf10ce82dea8b8844be3"
+            "sha256": "ebccac5c75e9380636c5284473fabd1fe244cf0506a6d25cb1a9bb3d6587db0a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,17 +18,36 @@
     "default": {
         "adafruit-blinka": {
             "hashes": [
-                "sha256:6dc7686a42e4ac31d5ced095abe4a26ef30b2025a6e81191074115c002f21faf"
+                "sha256:e7fc49d59bfd4cde0748a3bef2c74ed884365fdc8bf829e82bc3c209c7541864"
             ],
             "markers": "python_full_version >= '3.5.0'",
-            "version": "==5.9.2"
+            "version": "==5.10.0"
+        },
+        "adafruit-circuitpython-busdevice": {
+            "hashes": [
+                "sha256:c25eb848ca72590195772464dbadbc18a5589f0c7b34dff39945c4deeee602e1"
+            ],
+            "version": "==5.0.3"
+        },
+        "adafruit-circuitpython-epd": {
+            "hashes": [
+                "sha256:ed2c460ac2079aa531c7952f8a95abbb4388962b3361b1026a0af1cdc61f5bcc"
+            ],
+            "index": "pypi",
+            "version": "==2.7.0"
+        },
+        "adafruit-circuitpython-framebuf": {
+            "hashes": [
+                "sha256:73d912e68ae4501f397c8494b35877caa0dd97662c903e0cfc1ed98369c35b3e"
+            ],
+            "version": "==1.4.3"
         },
         "adafruit-circuitpython-neopixel": {
             "hashes": [
-                "sha256:1a3752d31a69d57496be44cb35818442b328ec18488e3b7d8411c94802d86195"
+                "sha256:ef619abf1a03a1ecbba55317ae6c6809aad6fc7781a9a3d0acba9977893c75e2"
             ],
             "index": "pypi",
-            "version": "==6.0.0"
+            "version": "==6.0.1"
         },
         "adafruit-circuitpython-pypixelbuf": {
             "hashes": [
@@ -38,10 +57,10 @@
         },
         "adafruit-platformdetect": {
             "hashes": [
-                "sha256:c3a4d8ec18a9c63a14cb4d26162ee22306cb6e68a7209f1430d473121dcb35cb"
+                "sha256:63e226cf76f8d17c496c85b8232bdbec4c6e1e58437be6b4cd0b54dc16a25705"
             ],
             "markers": "python_full_version >= '3.5.0'",
-            "version": "==2.23.0"
+            "version": "==2.25.0"
         },
         "adafruit-pureio": {
             "hashes": [
@@ -50,13 +69,51 @@
             "markers": "python_full_version >= '3.5.0'",
             "version": "==1.1.8"
         },
+        "pillow": {
+            "hashes": [
+                "sha256:165c88bc9d8dba670110c689e3cc5c71dbe4bfb984ffa7cbebf1fac9554071d6",
+                "sha256:1d208e670abfeb41b6143537a681299ef86e92d2a3dac299d3cd6830d5c7bded",
+                "sha256:22d070ca2e60c99929ef274cfced04294d2368193e935c5d6febfd8b601bf865",
+                "sha256:2353834b2c49b95e1313fb34edf18fca4d57446675d05298bb694bca4b194174",
+                "sha256:39725acf2d2e9c17356e6835dccebe7a697db55f25a09207e38b835d5e1bc032",
+                "sha256:3de6b2ee4f78c6b3d89d184ade5d8fa68af0848f9b6b6da2b9ab7943ec46971a",
+                "sha256:47c0d93ee9c8b181f353dbead6530b26980fe4f5485aa18be8f1fd3c3cbc685e",
+                "sha256:5e2fe3bb2363b862671eba632537cd3a823847db4d98be95690b7e382f3d6378",
+                "sha256:604815c55fd92e735f9738f65dabf4edc3e79f88541c221d292faec1904a4b17",
+                "sha256:6c5275bd82711cd3dcd0af8ce0bb99113ae8911fc2952805f1d012de7d600a4c",
+                "sha256:731ca5aabe9085160cf68b2dbef95fc1991015bc0a3a6ea46a371ab88f3d0913",
+                "sha256:7612520e5e1a371d77e1d1ca3a3ee6227eef00d0a9cddb4ef7ecb0b7396eddf7",
+                "sha256:7916cbc94f1c6b1301ac04510d0881b9e9feb20ae34094d3615a8a7c3db0dcc0",
+                "sha256:81c3fa9a75d9f1afafdb916d5995633f319db09bd773cb56b8e39f1e98d90820",
+                "sha256:887668e792b7edbfb1d3c9d8b5d8c859269a0f0eba4dda562adb95500f60dbba",
+                "sha256:93a473b53cc6e0b3ce6bf51b1b95b7b1e7e6084be3a07e40f79b42e83503fbf2",
+                "sha256:96d4dc103d1a0fa6d47c6c55a47de5f5dafd5ef0114fa10c85a1fd8e0216284b",
+                "sha256:a3d3e086474ef12ef13d42e5f9b7bbf09d39cf6bd4940f982263d6954b13f6a9",
+                "sha256:b02a0b9f332086657852b1f7cb380f6a42403a6d9c42a4c34a561aa4530d5234",
+                "sha256:b09e10ec453de97f9a23a5aa5e30b334195e8d2ddd1ce76cc32e52ba63c8b31d",
+                "sha256:b6f00ad5ebe846cc91763b1d0c6d30a8042e02b2316e27b05de04fa6ec831ec5",
+                "sha256:bba80df38cfc17f490ec651c73bb37cd896bc2400cfba27d078c2135223c1206",
+                "sha256:c3d911614b008e8a576b8e5303e3db29224b455d3d66d1b2848ba6ca83f9ece9",
+                "sha256:ca20739e303254287138234485579b28cb0d524401f83d5129b5ff9d606cb0a8",
+                "sha256:cb192176b477d49b0a327b2a5a4979552b7a58cd42037034316b8018ac3ebb59",
+                "sha256:cdbbe7dff4a677fb555a54f9bc0450f2a21a93c5ba2b44e09e54fcb72d2bd13d",
+                "sha256:cf6e33d92b1526190a1de904df21663c46a456758c0424e4f947ae9aa6088bf7",
+                "sha256:d355502dce85ade85a2511b40b4c61a128902f246504f7de29bbeec1ae27933a",
+                "sha256:d673c4990acd016229a5c1c4ee8a9e6d8f481b27ade5fc3d95938697fa443ce0",
+                "sha256:dc577f4cfdda354db3ae37a572428a90ffdbe4e51eda7849bf442fb803f09c9b",
+                "sha256:dd9eef866c70d2cbbea1ae58134eaffda0d4bfea403025f4db6859724b18ab3d",
+                "sha256:f50e7a98b0453f39000619d845be8b06e611e56ee6e8186f7f60c3b1e2f0feae"
+            ],
+            "index": "pypi",
+            "version": "==8.1.0"
+        },
         "pyftdi": {
             "hashes": [
-                "sha256:5f591cefc87c89177798b53c70914fadff54717433afc9ccb50213d053e87ee6",
-                "sha256:f26d61fe14a3d089ea7700e774501c52ce3312f3522763a407cd33988124bd5e"
+                "sha256:21e84163a48057de9e4eba6efcb42e51994868b702e1eabdbd2a8cbddad66b66",
+                "sha256:e8123dc3663ff3ac89eac962774e755b611e7f7202e9e36f6b6eb915fedc53f1"
             ],
             "markers": "python_full_version >= '3.5.0'",
-            "version": "==0.52.0"
+            "version": "==0.52.9"
         },
         "pyserial": {
             "hashes": [

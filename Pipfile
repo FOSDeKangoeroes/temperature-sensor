@@ -7,6 +7,8 @@ name = "pypi"
 "rpi.gpio" = "*"
 rpi-ws281x = "*"
 adafruit-circuitpython-neopixel = "*"
+adafruit-circuitpython-epd = "*"
+pillow = "*"
 
 [dev-packages]
 pylint = "*"

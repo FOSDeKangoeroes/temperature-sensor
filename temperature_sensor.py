@@ -1,3 +1,4 @@
+from display import Display
 import statistics
 from threading import Thread
 from datetime import datetime
@@ -29,6 +30,7 @@ try:
     temp_manager = TempSensorManager()
     led_strip = LedStrip(10, board.D18)
     csv_logger = CsvLogger(LOG_FILE)
+    display = Display()
 
     led_strip_thread = Thread(target=led_strip.run)
     led_strip_thread.start()
@@ -39,6 +41,8 @@ try:
         readings = read_all(devices)
         mean_temp = statistics.mean(x[1] for x in readings)
         led_strip.current_color = get_temperature_color(mean_temp)
+        text = "{:.2f}°C".format(mean_temp)
+        display.update_display(text)
         print(readings)
         time.sleep(180)
 except KeyboardInterrupt:
