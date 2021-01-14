@@ -48,4 +48,5 @@ try:
 except KeyboardInterrupt:
     led_strip_thread.running = False
     led_strip_thread.join()
+    display.clear()
     GPIO.cleanup()

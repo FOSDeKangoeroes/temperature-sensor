@@ -46,4 +46,16 @@ If you want to add sensors to multiple pins, add this to /boot/config.txt:
 
 `dtoverlay=w1-gpio,gpiopin=<pin_where_sensor_is_connected>`
 
+## Adding the script to systemd
+
+Run following commands:
+``
+sudo cp temperature_sensor.service.example /lib/systemd/system/temperature_sensor.service
+sudo chmod 644 /lib/systemd/system/temperature_sensor.service
+sudo systemctl daemon-reload
+sudo systemctl enable temperature_sensor.service
+``
+
+After rebooting, the script should start running automatically
+
  

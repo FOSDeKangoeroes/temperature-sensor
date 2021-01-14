@@ -50,6 +50,10 @@ class Display:
         self.display.fill(Adafruit_EPD.WHITE)
         self.display.image(image)
         self.display.display()
+
+    def clear(self):
+        self.display.fill(Adafruit_EPD.WHITE)
+        self.display.display()
    
     def update_display(self, new_text):
         if new_text != self.current_text:

@@ -1,0 +1,10 @@
+ [Unit]
+ Description=My Sample Service
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=sudo /home/pi/.local/share/virtualenvs/temperature_sensor-t22t0jL4/bin/python /home/pi/projects/temperature_sensor/temperature_sensor.py > /home/pi/temp_sensor.log 2>&1
+
+ [Install]
+ WantedBy=multi-user.target
