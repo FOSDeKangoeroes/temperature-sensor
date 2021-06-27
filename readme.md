@@ -18,9 +18,11 @@ Refer to the Fritzing diagram for the circuit layout and which pins to use on th
 ### Prerequisites
 - Python 3.7
 - Pipenv
+- Git
+- This project, cloned to a folder on the Pi
 
 ### Running
-
+All commands are run in the root folder of the project, unless stated otherwise.
 
 ```
 pipenv install
